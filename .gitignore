@@ -7,3 +7,6 @@ _original/
 Thumbs.db
 .vscode/
 node_modules/
+
+# Local Netlify folder
+.netlify
