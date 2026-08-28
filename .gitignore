@@ -1,0 +1,9 @@
+# Original single-file bundler export — kept locally for reference,
+# not tracked or deployed (it is a 1.8 MB duplicate of the whole site).
+_original/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+node_modules/
