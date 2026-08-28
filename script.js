@@ -2,8 +2,26 @@
   var burger=document.getElementById('burger'),links=document.getElementById('navLinks');
   burger.addEventListener('click',function(){links.classList.toggle('open')});
   links.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){links.classList.remove('open')})});
-  // enquiry form (sample only)
-  document.getElementById('enquiry').addEventListener('submit',function(e){e.preventDefault();document.getElementById('sentNote').style.display='block';this.reset();});
+  // enquiry form -> Netlify Forms, submitted via fetch so the page does not navigate away
+  var enquiry=document.getElementById('enquiry'),sentNote=document.getElementById('sentNote');
+  enquiry.addEventListener('submit',function(e){
+    e.preventDefault();
+    var btn=enquiry.querySelector('button[type=submit]'),label=btn.textContent;
+    btn.disabled=true;btn.textContent='Sending...';
+    fetch('/',{
+      method:'POST',
+      headers:{'Content-Type':'application/x-www-form-urlencoded'},
+      body:new URLSearchParams(new FormData(enquiry)).toString()
+    }).then(function(r){
+      if(!r.ok)throw new Error(r.status);
+      sentNote.textContent='Thank you - your enquiry has been received. A partner will respond shortly.';
+      sentNote.style.display='block';
+      enquiry.reset();
+    }).catch(function(){
+      sentNote.textContent='Sorry, your enquiry could not be sent. Please email office@chooleepartners.com or call +60 10-563 9869.';
+      sentNote.style.display='block';
+    }).then(function(){btn.disabled=false;btn.textContent=label;});
+  });
   // hero slider
   var track=document.getElementById('slideTrack'),cur=0;
   if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
