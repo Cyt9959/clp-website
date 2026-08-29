@@ -8,5 +8,5 @@ Thumbs.db
 .vscode/
 node_modules/
 
-# Local Netlify folder
+# Leftover local Netlify CLI folder (dead account; safe to delete)
 .netlify

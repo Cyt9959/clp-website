@@ -2,16 +2,17 @@
   var burger=document.getElementById('burger'),links=document.getElementById('navLinks');
   burger.addEventListener('click',function(){links.classList.toggle('open')});
   links.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){links.classList.remove('open')})});
-  // enquiry form -> Netlify Forms, submitted via fetch so the page does not navigate away
+  // enquiry form -> Formspree, submitted via fetch so the page does not navigate away.
+  // The endpoint lives on the form's action attribute in index.html.
   var enquiry=document.getElementById('enquiry'),sentNote=document.getElementById('sentNote');
   enquiry.addEventListener('submit',function(e){
     e.preventDefault();
     var btn=enquiry.querySelector('button[type=submit]'),label=btn.textContent;
     btn.disabled=true;btn.textContent='Sending...';
-    fetch('/',{
+    fetch(enquiry.action,{
       method:'POST',
-      headers:{'Content-Type':'application/x-www-form-urlencoded'},
-      body:new URLSearchParams(new FormData(enquiry)).toString()
+      headers:{'Accept':'application/json'},
+      body:new FormData(enquiry)
     }).then(function(r){
       if(!r.ok)throw new Error(r.status);
       sentNote.textContent='Thank you - your enquiry has been received. A partner will respond shortly.';

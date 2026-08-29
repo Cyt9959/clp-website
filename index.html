@@ -240,9 +240,10 @@
     <div class="cform reveal">
       <h3>Enquiry</h3>
       <p class="note">All enquiries are treated as private and confidential.</p>
-      <form id="enquiry" name="enquiry" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="enquiry">
-        <p hidden><label>Leave this field empty: <input name="bot-field"></label></p>
+      <!-- Formspree endpoint. Replace FORMSPREE_FORM_ID with the id from your Formspree form. -->
+      <form id="enquiry" name="enquiry" method="POST" action="https://formspree.io/f/FORMSPREE_FORM_ID">
+        <input type="hidden" name="_subject" value="New enquiry from chooleepartners.com">
+        <p hidden><label>Leave this field empty: <input name="_gotcha"></label></p>
         <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" autocomplete="name" required=""></div>
         <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required=""></div>
         <div class="field"><label for="f-phone">Phone / WhatsApp</label><input id="f-phone" name="phone" type="tel" autocomplete="tel"></div>
