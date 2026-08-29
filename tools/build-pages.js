@@ -245,11 +245,6 @@ for (const p of partners) {
   <div class="wrap profile-grid">
     <div class="profile-photo reveal">
       <img src="${base}images/${p.photo}" alt="${p.name.replace(/ \(.*\)$/, '')}, ${p.role.replace(/&middot;/g, '—').replace(/&amp;/g, '&')}">
-      <div class="profile-contact">
-        <div class="crow"><span class="k">Telephone</span><span><a href="tel:+60105639869">+60 10-563 9869</a></span></div>
-        <div class="crow"><span class="k">Email</span><span><a href="mailto:office@chooleepartners.com">office@chooleepartners.com</a></span></div>
-        <div class="crow"><span class="k">Office</span><span>Solaris Dutamas, Kuala Lumpur</span></div>
-      </div>
     </div>
 
     <div class="profile-body prose">

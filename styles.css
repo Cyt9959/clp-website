@@ -452,12 +452,11 @@
   .insights{padding:110px 0;background:var(--navy-950);color:#fff}
   .insights .section-title{color:#fff}
   .insights .lede{color:rgba(255,255,255,.66)}
+  .insights .coming{margin-top:14px;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:#C9AE7F}
   .igrid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:56px}
-  .icard{border:1px solid rgba(255,255,255,.14);padding:34px 30px;display:flex;flex-direction:column;min-height:250px;transition:border-color .25s,background .25s}
-  .icard:hover{border-color:var(--bronze);background:rgba(255,255,255,.03)}
+  .icard{border:1px solid rgba(255,255,255,.14);padding:34px 30px;display:flex;flex-direction:column;min-height:190px}
   .imeta{display:flex;justify-content:space-between;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#C9AE7F}
   .icard h3{font-family:var(--serif);font-weight:500;font-size:1.35rem;line-height:1.35;margin-top:18px;flex:1}
-  .icard .read{font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-top:24px}
 
   /* ---- contact ---- */
   .contact{padding:110px 0;background:var(--paper)}
@@ -620,8 +619,6 @@
   /* ---- profile page: photo + bio ---- */
   .profile-grid{display:grid;grid-template-columns:340px minmax(0,1fr);gap:64px;align-items:start}
   .profile-photo img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center top;filter:saturate(.92)}
-  .profile-contact{margin-top:26px;border-top:1px solid var(--mist)}
-  .profile-contact .crow{grid-template-columns:96px 1fr;font-size:.86rem}
   .profile-body h2{font-family:var(--serif);font-weight:500;font-size:1.5rem;line-height:1.25}
   .profile-body h2+p{margin-top:16px}
   .profile-body section+section{margin-top:42px}
