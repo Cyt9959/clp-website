@@ -7,7 +7,7 @@
    Then check it:      python tools/verify-site.py */
 const fs = require('fs');
 const path = require('path');
-const { SITE, partners, practices } = require('./content.js');
+const { SITE, ADDRESS, partners, practices } = require('./content.js');
 
 const ROOT = path.join(__dirname, '..');
 const bySlug = Object.fromEntries(partners.map(p => [p.slug, p]));
@@ -352,7 +352,8 @@ for (const s of stubs) {
       <h2 class="block-title">Page under preparation</h2>
       <div class="notice">
         <p>This page is currently under preparation. The final ${s.h1.toLowerCase()} will be published here once settled by the Firm.</p>
-        <p>In the meantime, any question about this website or about how the Firm handles your information can be directed to <a href="mailto:office@chooleepartners.com">office@chooleepartners.com</a> or <a href="tel:+60105639869">+60 10-563 9869</a>.</p>
+        <p class="addr">${ADDRESS.firm}<br>${ADDRESS.lines.join('<br>')}</p>
+        <p>In the meantime, data-protection enquiries and requests may be made in writing to the Firm&rsquo;s address above, or through the <a href="${base}index.html#contact">enquiry form on this website</a>.</p>
       </div>
       <p class="lede">This website is for general information only and does not constitute legal advice.</p>
     </div>

@@ -3,6 +3,12 @@
 
 const SITE = 'https://chooleepartners.com';
 
+/* Postal address, used where a page has to give a contact route in writing. */
+const ADDRESS = {
+  firm: 'Messrs Choo, Lee &amp; Partners',
+  lines: ['D4-U5-1, Solaris Dutamas', 'No. 1, Jalan Dutamas 1', '50480 Kuala Lumpur, Malaysia'],
+};
+
 const partners = [
   {
     slug: 'choo-tzu-hao',
@@ -266,4 +272,4 @@ const practices = [
   },
 ];
 
-module.exports = { SITE, partners, practices };
+module.exports = { SITE, ADDRESS, partners, practices };

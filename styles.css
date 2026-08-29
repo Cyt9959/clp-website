@@ -631,6 +631,7 @@
   .stub .notice{border:1px solid var(--mist);border-left:2px solid var(--bronze);background:var(--paper);padding:26px 30px;margin-top:26px}
   .stub .notice p{color:var(--slate);font-size:.94rem}
   .stub .notice p+p{margin-top:12px}
+  .stub .notice .addr{color:var(--navy-950);font-style:normal;line-height:1.7;margin-top:16px}
 
   /* ---- inner-page responsive ---- */
   @media (max-width:1020px){
