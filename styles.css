@@ -324,6 +324,10 @@
 
   /* ---- hero ---- */
   .hero{position:relative;height:min(88vh,820px);min-height:600px;background:var(--navy-950)}
+  /* .hero-media / .hero-figure are pass-through wrappers here: nested inset:0 boxes
+     reproduce the original full-bleed slider. They only take on geometry of their
+     own from 721px up, where the hero becomes a split composition. */
+  .hero-media,.hero-figure{position:absolute;inset:0}
   .hero-slides{position:absolute;inset:0;overflow:hidden}
   .slide-track{display:flex;width:200%;height:100%;transform:translateX(0);transition:transform 1.1s cubic-bezier(.77,0,.18,1)}
   .slide-track img{width:50%;height:100%;object-fit:cover;object-position:center top;flex:none}
@@ -336,6 +340,60 @@
   .hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(2.3rem,5vw,3.9rem);line-height:1.08;max-width:15ch;margin-top:20px}
   .hero p{margin-top:20px;max-width:56ch;color:rgba(255,255,255,.82);font-size:1.02rem}
   .hero-ctas{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap}
+
+  /* ---- hero: split composition from 721px up ----
+     The photo is shown COMPLETE — the figure is a fixed 3:2 box matching the
+     source images (2184x1456), and object-fit is contain rather than cover, so
+     nothing is ever cropped. Copy sits on the navy, never over the photograph,
+     so the gradient veil is dropped above the phone breakpoint. */
+  @media (min-width:721px){
+    .hero{overflow:hidden}
+    .hero .veil{display:none}
+    .hero-figure{isolation:isolate;box-shadow:0 34px 70px -34px rgba(0,0,0,.62)}
+    /* the offset hairline frame motif from the About photo, keyed for navy */
+    .hero-figure::after{content:"";position:absolute;z-index:0;top:20px;left:20px;right:-20px;bottom:-20px;border:1px solid rgba(255,255,255,.20)}
+    .hero-slides{z-index:1;background:var(--navy-950)}
+    .slide-track img{object-fit:contain;object-position:center}
+    /* the kicker has a narrower column to live in now — tighten it so the two
+       labels and the rule stay on one line for as long as they can */
+    .hero-kicker{gap:12px}
+    .hero-kicker .rule{width:36px}
+    .hero-kicker .eyebrow{font-size:.76rem;letter-spacing:.16em}
+  }
+
+  /* 721-999px: not enough width for two columns — copy above, photo below */
+  @media (min-width:721px) and (max-width:999px){
+    .hero{height:auto;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:48px;padding:76px 0 84px}
+    .hero-media{position:relative;inset:auto;order:2;width:100%;max-width:var(--maxw);margin:0 auto;padding:0 28px}
+    .hero-figure{position:relative;inset:auto;width:100%;max-width:640px;margin:0 auto;aspect-ratio:3/2}
+    .hero-inner{position:relative;inset:auto;order:1;padding-bottom:0}
+  }
+
+  /* 1000px+: copy left, photo right, both on the same wrap-aligned grid */
+  @media (min-width:1000px){
+    .hero-media,.hero-inner{
+      position:absolute;inset:0;
+      max-width:var(--maxw);margin:0 auto;padding:0 28px;
+      display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);
+      column-gap:60px;align-items:center;
+    }
+    .hero-inner{padding-bottom:0}
+    .hero-copy{grid-column:1;min-width:0}
+    .hero-figure{
+      position:relative;inset:auto;grid-column:2;
+      width:100%;aspect-ratio:3/2;max-height:calc(100% - 96px);
+    }
+  }
+
+  /* 1000-1159px: the copy column is too narrow for the kicker to sit on one
+     line, so the rule leads in above the two labels instead of dangling */
+  @media (min-width:1000px) and (max-width:1159px){
+    .hero-kicker{flex-direction:column;align-items:flex-start;gap:9px}
+    .hero-kicker .rule{order:-1;width:44px}
+    /* keep the two CTAs side by side in the narrower copy column */
+    .hero-ctas{gap:12px}
+    .hero-ctas .btn{padding:14px 24px}
+  }
   .btn{display:inline-block;padding:14px 30px;font-size:.82rem;letter-spacing:.10em;font-weight:600;text-transform:uppercase;transition:all .25s}
   .btn-solid{background:#fff;color:var(--navy-950)}
   .btn-solid:hover{background:var(--bronze);color:#fff}
@@ -500,6 +558,7 @@
      headline and CTAs overlaid within the same hero */
   @media (max-width:720px) and (orientation:portrait){
     .hero{height:auto;min-height:100vh;min-height:max(100svh,calc(66.8vw + 470px))}
+    .hero-media,.hero-figure{position:relative;inset:auto}
     .hero-slides{position:relative;inset:auto;width:100%;aspect-ratio:1092/728}
     .hero .veil{inset:0 0 auto 0;height:calc(66.8vw + 2px);background:linear-gradient(to bottom,rgba(11,20,36,.16) 0%,rgba(11,20,36,0) 20%,rgba(11,20,36,0) 46%,rgba(11,20,36,.55) 74%,rgba(11,20,36,.94) 93%,#0B1424 100%)}
     .hero-inner{padding-bottom:42px}
